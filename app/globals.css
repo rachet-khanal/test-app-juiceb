@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --font-bagoss: var(--font-bagoss);
+  --font-sohne: var(--font-sohne);
+  --font-agrandir: var(--font-agrandir);
+  --font-sf-pro-display: var(--font-sf-pro-display);
+  --font-sf-compact-display: var(--font-sf-compact-display);
+}
