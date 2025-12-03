@@ -4,12 +4,14 @@ export const bagoss = localFont({
   src: "../public/fonts/BagossStandard-TRIAL-Regular.otf",
   variable: "--font-bagoss",
   display: "swap",
+  weight: "400",
 });
 
 export const sohne = localFont({
   src: "../public/fonts/Sohne-Buch.otf",
   variable: "--font-sohne",
   display: "swap",
+  weight: "400",
 });
 
 export const agrandir = localFont({
