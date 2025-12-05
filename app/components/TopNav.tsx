@@ -1,33 +1,80 @@
 "use client"
 
-import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
+
+import AnimatedLogo from "./AnimatedLogo"
 import IconButton from "./IconButton"
+import { gsap } from "gsap"
+import { useBackButton } from "../contexts/BackButtonContext"
+import { useNavigation } from "../contexts/NavigationContext"
+import { usePathname } from "next/navigation"
 
-interface TopNavProps {
-  showBackButton?: boolean
-}
+export default function TopNav() {
+  const pathname = usePathname()
+  const { navigateTo } = useNavigation()
+  const { customBackHandler } = useBackButton()
+  const [triggerAnimation, setTriggerAnimation] = useState(false)
+  const backButtonRef = useRef<HTMLDivElement>(null)
 
-export default function TopNav({
-  showBackButton = false,
-}: TopNavProps) {
+  // Show back button on non-home pages
+  const showBackButton = pathname !== "/"
+
   const handleBackClick = () => {
-    // Navigate back in history
-    if (typeof window !== 'undefined') {
-      window.history.back()
+    if (customBackHandler) {
+      // Use custom back handler if set by a page (e.g., tutorial slides)
+      customBackHandler()
+    } else {
+      // Default: Navigate back using transition-aware navigation
+      navigateTo("/")
     }
   }
 
   const handleRefreshClick = () => {
     // Reload the page
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.location.reload()
     }
   }
 
+  const handleLogoInteraction = () => {
+    setTriggerAnimation(true)
+    // Reset after animation completes
+    setTimeout(() => setTriggerAnimation(false), 1500)
+  }
+
+  // Animate back button in/out when showBackButton changes
+  useEffect(() => {
+    if (!backButtonRef.current) return
+
+    if (showBackButton) {
+      // Fade in
+      gsap.fromTo(
+        backButtonRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        }
+      )
+    } else {
+      // Fade out
+      gsap.to(backButtonRef.current, {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.in",
+      })
+    }
+  }, [showBackButton])
+
   return (
     <div className="flex flex-row justify-between items-center w-full px-px-20 py-5">
-      {/* Left side - Back button or spacer */}
-      {showBackButton ? (
+      {/* Left side - Back button (always rendered, animated in/out) */}
+      <div
+        ref={backButtonRef}
+        style={{ opacity: 0 }}
+        className={showBackButton ? "" : "pointer-events-none"}
+      >
         <IconButton label="Go back" onClick={handleBackClick}>
           <svg
             width="20"
@@ -44,19 +91,21 @@ export default function TopNav({
             />
           </svg>
         </IconButton>
-      ) : (
-        <div className="w-px-46" />
-      )}
+      </div>
 
-      {/* Center - Logo */}
-      <Image
-        src="/images/logo.svg"
-        alt="juicebox logo"
-        width={123}
-        height={29}
-        priority
-        className="absolute left-1/2 -translate-x-1/2"
-      />
+      {/* Center - Animated Logo */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 cursor-pointer"
+        onMouseEnter={handleLogoInteraction}
+        onClick={handleLogoInteraction}
+      >
+        <AnimatedLogo
+          width={123}
+          height={29}
+          mode="trigger"
+          trigger={triggerAnimation}
+        />
+      </div>
 
       {/* Right side - Refresh button */}
       <IconButton label="Refresh" onClick={handleRefreshClick}>

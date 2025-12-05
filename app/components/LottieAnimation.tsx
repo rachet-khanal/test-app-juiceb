@@ -165,9 +165,12 @@ export default function LottieAnimation({
   }, [speed, setupGSAPAnimation])
 
   return (
-    <div ref={containerRef} className={`relative ${className ?? ""}`}>
-      {/* Pattern definition kept for future use */}
-      <svg className="opacity-0 absolute">
+    <>
+      {/* Pattern definition - must be in DOM for Lottie to reference */}
+      <svg
+        className="absolute"
+        style={{ position: "absolute", width: 0, height: 0 }}
+      >
         <defs>
           <pattern
             ref={patternRef}
@@ -190,6 +193,7 @@ export default function LottieAnimation({
           </pattern>
         </defs>
       </svg>
-    </div>
+      <div ref={containerRef} className={`relative ${className ?? ""}`} />
+    </>
   )
 }

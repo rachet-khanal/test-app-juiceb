@@ -28,7 +28,12 @@
 
   /* Font sizes in em for text-* utilities */
   --text-xs: 0.75em; /* 12px */
+  --text-xl: 1.375em; /* 22px */
   --text-2xl: 1.75em; /* 28px */
+
+  /* Brand colors */
+  --color-brand-purple: #cdaaff;
+  --color-dot-inactive: rgba(255, 255, 255, 0.25);
 }
 
 /* Custom radial gradient */
