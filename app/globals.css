@@ -52,6 +52,11 @@ body {
   min-height: 100vh;
 }
 
+.blob-mask path {
+  fill: url(#blobPattern) !important;
+  /* opacity: 0.5; */
+}
+
 /* Mobile-only layout constraint */
 @media (min-width: 768px) {
   body {

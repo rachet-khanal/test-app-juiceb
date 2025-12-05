@@ -8,6 +8,7 @@ import {
   sfProDisplay,
   sohne,
 } from "./fonts"
+import SmoothScroll from "./components/SmoothScroll"
 
 export const metadata: Metadata = {
   title: "Juicebox",
@@ -42,15 +43,17 @@ export default function RootLayout({
       </head>
       <body
         className={`
-          ${bagoss.variable} ${sohne.variable} ${agrandir.variable} ${sfProDisplay.variable} 
+          ${bagoss.variable} ${sohne.variable} ${agrandir.variable} ${sfProDisplay.variable}
           ${sfCompactDisplay.variable} antialiased bg-[141218]`}
       >
-        <div
-          className="
-          fixed inset-0 -z-10
-        "
-        />
-        {children}
+        <SmoothScroll>
+          <div
+            className="
+            fixed inset-0 -z-10
+          "
+          />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   )
