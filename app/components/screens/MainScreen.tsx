@@ -22,14 +22,14 @@ export default function MainScreen() {
   return (
     <div className="w-full" ref={containerRef}>
       {/* Spacer and Text Overlays Container */}
-      <div className="w-full max-w-px-390 mx-auto absolute top-0">
+      <div className="absolute-top-full">
         <div className="py-px-28">
           {/* Text overlays - positioned absolutely with high z-index */}
           <p
             ref={(el) => {
               textOverlaysRef.current[0] = el
             }}
-            className="absolute font-sohne text-xs text-[#fafafa] w-px-292 left-px-20 top-10 leading-[1.35] tracking-[0.02em]"
+            className="text-overlay-left overlay-position-1"
           >
             WA businesses feel confident about future growth
           </p>
@@ -37,7 +37,7 @@ export default function MainScreen() {
             ref={(el) => {
               textOverlaysRef.current[1] = el
             }}
-            className="absolute font-sohne text-xs text-[#fafafa] text-right right-px-20 top-px-86 leading-[1.35] tracking-[0.02em]"
+            className="text-overlay-right overlay-position-2"
           >
             AI cant replace creativity
           </p>
@@ -45,7 +45,7 @@ export default function MainScreen() {
             ref={(el) => {
               textOverlaysRef.current[2] = el
             }}
-            className="absolute font-sohne text-xs text-[#fafafa] left-px-20 top-px-147 leading-[1.35] tracking-[0.02em]"
+            className="text-overlay-left overlay-position-3"
           >
             Sales measure true success
           </p>
@@ -53,7 +53,7 @@ export default function MainScreen() {
             ref={(el) => {
               textOverlaysRef.current[3] = el
             }}
-            className="absolute font-sohne text-xs text-[#fafafa] text-right right-px-30 top-px-211 bottom-px-80 leading-[1.35] tracking-[0.02em]"
+            className="text-overlay-right-30 overlay-position-4 bottom-px-80"
           >
             Human connection drives WA business
           </p>
@@ -61,7 +61,7 @@ export default function MainScreen() {
             ref={(el) => {
               textOverlaysRef.current[4] = el
             }}
-            className="absolute font-sohne text-xs text-[#fafafa] left-px-20 top-px-274 bottom-px-20 max-w-px-226 leading-[1.35] tracking-[0.02em]"
+            className="text-overlay-left overlay-position-5 bottom-px-20"
           >
             The primary barrier to digital transformation is financial
             investment
@@ -72,19 +72,10 @@ export default function MainScreen() {
       {/* Main Heading */}
       <h2
         ref={headingRef}
-        className="font-bagoss text-2xl text-center mx-5 pb-6 leading-[1.2] tracking-[0.01em] text-[#FAFAFA]"
+        className="heading-with-spacing"
       >
         Compare your thoughts on{" "}
-        <span
-          className="font-bagoss"
-          style={{
-            background:
-              "linear-gradient(90deg, #FABBFF 0%, #B179FF 35%, #6DDDFF 83%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
+        <span className="text-gradient">
           technology
         </span>{" "}
         with current industry opinions.

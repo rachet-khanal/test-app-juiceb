@@ -11,7 +11,7 @@ interface IconButtonProps {
 export default function IconButton({ label, onClick, children }: IconButtonProps) {
   return (
     <button
-      className="text-white w-px-46 h-px-46 bg-white/5 flex items-center justify-center rounded-[12.5rem] cursor-pointer hover:bg-white/10 transition-colors"
+      className="btn-icon"
       aria-label={label}
       onClick={onClick}
     >

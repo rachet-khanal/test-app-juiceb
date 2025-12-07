@@ -45,7 +45,7 @@ export default function RootLayout({
       <body
         className={`
           ${bagoss.variable} ${sohne.variable} ${agrandir.variable} ${sfProDisplay.variable}
-          ${sfCompactDisplay.variable} antialiased bg-[141218]`}
+          ${sfCompactDisplay.variable} antialiased`}
       >
         <LayoutContent>{children}</LayoutContent>
       </body>

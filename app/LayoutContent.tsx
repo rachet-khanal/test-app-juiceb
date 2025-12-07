@@ -31,9 +31,8 @@ function LayoutInner({ children }: { children: ReactNode }) {
           <BackButtonProvider>
             <CTAButtonProvider>
               <div
-                className="text-white relative"
+                className="text-white relative flex flex-col h-full"
                 style={{
-                  minHeight: "100vh",
                   background:
                     "radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0C0D10 100%)",
                 }}
@@ -51,20 +50,22 @@ function LayoutInner({ children }: { children: ReactNode }) {
 
                   {/* Header - always visible */}
                   <div
-                    className="relative"
+                    className="relative shrink-0"
                     style={{ paddingTop: "env(safe-area-inset-top)" }}
                   >
                     <TopNav />
                   </div>
 
-                  {/* Page Content with transitions */}
-                  <div className="relative">
+                  {/* Page Content with transitions - grows to fill space */}
+                  <div className="relative flex-1 overflow-y-auto">
                     <GlobalLottie />
                     <PageTransition>{children}</PageTransition>
                   </div>
 
-                  {/* CTA Button - always visible at bottom */}
-                  <CTAButton />
+                  {/* CTA Button - fixed at bottom with 24px spacing */}
+                  <div className="shrink-0" style={{ paddingBottom: "24px" }}>
+                    <CTAButton />
+                  </div>
                 </SmoothScroll>
               </div>
             </CTAButtonProvider>

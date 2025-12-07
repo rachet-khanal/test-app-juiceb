@@ -174,17 +174,17 @@ export default function SurveyPage() {
   /* Page */
 
   return (
-    <div className="flex flex-col items-center justify-start px-px-20 mt-0.5">
+    <div className="container-page-survey">
       <p
         ref={textRef}
-        className="font-bagoss text-[19px] leading-snug text-center text-[#fafafa] pb-45"
+        className="body-medium pb-45"
       >
         {step === 1
           ? "Let's start with the basics. Type in your first name."
           : "How should we contact you? Type in your email address."}
       </p>
 
-      <div className="w-full flex justify-center py-6">
+      <div className="w-full flex-row-centered py-6">
         <Input
           ref={inputRef}
           type={step === 1 ? "text" : "email"}

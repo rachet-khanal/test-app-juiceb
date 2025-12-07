@@ -66,7 +66,7 @@ export default function DotIndicator({
   }, [activeIndex])
 
   return (
-    <div className={`flex items-center justify-center gap-2 ${className}`}>
+    <div className={`dots-container ${className}`}>
       {Array.from({ length: total }).map((_, index) => (
         <div
           key={index}

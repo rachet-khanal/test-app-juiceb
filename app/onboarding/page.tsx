@@ -5,7 +5,7 @@ import { useNavigation } from "@/app/contexts/NavigationContext"
 import { useCTAButton } from "@/app/contexts/CTAButtonContext"
 import { useBackButton } from "@/app/contexts/BackButtonContext"
 import { useFormData } from "@/app/contexts/FormDataContext"
-import { useLottieSize } from "@/app/contexts/LottieSizeContext"
+import { useLottie } from "@/app/contexts/LottieContext"
 import gsap from "gsap"
 
 export default function OnboardingNamePage() {
@@ -13,15 +13,15 @@ export default function OnboardingNamePage() {
   const { setCTAConfig } = useCTAButton()
   const { setCustomBackHandler } = useBackButton()
   const { formData, dispatch } = useFormData()
-  const { setLottieSize } = useLottieSize()
+  const { setLottieSize } = useLottie()
   const [name, setName] = useState(formData.name)
   const textRef = useRef<HTMLParagraphElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   // Set Lottie size for this page
   useEffect(() => {
-    setLottieSize(80) // Small hexagon like in the design
-    return () => setLottieSize(100) // Reset to default on unmount
+    setLottieSize(80, 80) // Small hexagon like in the design
+    return () => setLottieSize(100, 100) // Reset to default on unmount
   }, [setLottieSize])
 
   // Animate text on mount

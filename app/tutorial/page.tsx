@@ -142,7 +142,7 @@ export default function TutorialPage() {
   return (
     <div ref={containerRef} style={{ opacity: 0 }} className="flex">
       {/* Swiper Container */}
-      <div className="w-full px-px-20 grow">
+      <div className="content-with-padding">
         <Swiper
           modules={[Pagination]}
           spaceBetween={50}
@@ -164,8 +164,7 @@ export default function TutorialPage() {
                 ref={(el) => {
                   textRefs.current[index] = el
                 }}
-                className="font-bagoss min-h-[150px] mb-12 text-xl text-center mx-auto leading-tight tracking-[0.01em]"
-                style={{ color: "#fafafa" }}
+                className="heading-tutorial text-primary"
               >
                 {slide.text}
               </h4>
@@ -174,7 +173,7 @@ export default function TutorialPage() {
         </Swiper>
 
         {/* Custom Pagination Dots */}
-        <div className="flex justify-center mb-6">
+        <div className="flex-row-centered mb-6">
           <DotIndicator mode="stepper" total={3} currentStep={currentSlide} />
         </div>
       </div>

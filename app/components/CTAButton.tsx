@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+
 import { gsap } from "gsap"
 import { useCTAButton } from "../contexts/CTAButtonContext"
 
@@ -10,16 +11,13 @@ export default function CTAButton() {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const prevConfigRef = useRef(ctaConfig)
 
-  const baseStyles =
-    "font-sohne flex items-center justify-center mx-px-20 my-6 cursor-pointer overflow-hidden relative"
-
   const variantStyles = {
     // Purple background (home page)
-    primary: "bg-[#cdaaff] text-[#0c0d10] hover:bg-[#d9b8ff]",
+    primary: "btn-cta btn-cta-primary",
     // White background (Get started)
-    secondary: "bg-white text-[#0c0d10] hover:bg-gray-100",
+    secondary: "btn-cta btn-cta-secondary",
     // Black outline (Continue)
-    outline: "bg-transparent text-white border border-white hover:bg-white/10",
+    outline: "btn-cta btn-cta-outline",
   }
 
   // Animate text and background when config changes
@@ -70,14 +68,7 @@ export default function CTAButton() {
       ref={buttonRef}
       onClick={ctaConfig.onClick}
       disabled={ctaConfig.disabled}
-      className={`${baseStyles} ${variantStyles[ctaConfig.variant]} transition-colors duration-300`}
-      style={{
-        width: "-webkit-fill-available",
-        height: "3.5rem", // 56px
-        fontSize: "1em", // 16px (relative to parent)
-        lineHeight: "1.1875", // 19px / 16px
-        borderRadius: "1.1875rem", // 19px
-      }}
+      className={variantStyles[ctaConfig.variant]}
     >
       <span ref={textRef} className="inline-block">
         {ctaConfig.text}

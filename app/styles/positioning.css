@@ -1,0 +1,44 @@
+/* Absolute positioning utilities */
+.absolute-centered-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.absolute-top-full {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  max-width: var(--spacing-px-390);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Text overlay positions - specific to MainScreen */
+.overlay-position-1 {
+  width: var(--spacing-px-292);
+  left: var(--spacing-px-20);
+  top: 2.5rem;
+}
+
+.overlay-position-2 {
+  right: var(--spacing-px-20);
+  top: var(--spacing-px-86);
+}
+
+.overlay-position-3 {
+  left: var(--spacing-px-20);
+  top: var(--spacing-px-147);
+}
+
+.overlay-position-4 {
+  right: var(--spacing-px-30);
+  top: var(--spacing-px-211);
+}
+
+.overlay-position-5 {
+  left: var(--spacing-px-20);
+  top: var(--spacing-px-274);
+  max-width: var(--spacing-px-226);
+}
+

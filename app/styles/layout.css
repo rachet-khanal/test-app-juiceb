@@ -1,0 +1,61 @@
+/* Container layouts */
+.container-page-survey {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: var(--spacing-px-20);
+  padding-right: var(--spacing-px-20);
+  margin-top: 0.125rem;
+}
+
+.container-page-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: var(--spacing-px-20);
+  padding-right: var(--spacing-px-20);
+  margin-top: -0.25rem;
+  font-size: 19px;
+  font-family: var(--font-bagoss);
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+/* Navigation layouts */
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-left: var(--spacing-px-20);
+  padding-right: var(--spacing-px-20);
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+/* Flex utilities */
+.flex-row-centered {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content wrappers */
+.content-with-padding {
+  width: 100%;
+  padding-left: var(--spacing-px-20);
+  padding-right: var(--spacing-px-20);
+  flex-grow: 1;
+}
+
+/* Dot indicator container */
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}

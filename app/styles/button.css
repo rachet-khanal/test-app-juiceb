@@ -1,0 +1,100 @@
+/* Icon Button - Small circular button with semi-transparent background */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: var(--color-text-white);
+  width: var(--spacing-px-46);
+  height: var(--spacing-px-46);
+  background-color: rgb(255 255 255 / 0.05);
+  border-radius: 12.5rem;
+}
+
+.btn-icon:hover {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+/* CTA Button Base - Shared styles for all CTA variants */
+.btn-cta {
+  font-family: var(--font-sohne);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--spacing-px-20);
+  margin-right: var(--spacing-px-20);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s;
+  width: -webkit-fill-available;
+  height: var(--spacing-px-56); /* 56px */
+  font-size: 1em; /* 16px (relative to parent) */
+  line-height: 1.1875; /* 19px / 16px */
+  border-radius: 1.1875rem; /* 19px */
+}
+
+/* CTA Button Variants */
+.btn-cta-primary {
+  background-color: var(--color-brand-purple);
+  color: var(--color-text-dark);
+}
+
+.btn-cta-primary:hover {
+  background-color: var(--color-brand-purple-hover);
+}
+
+.btn-cta-secondary {
+  background-color: var(--color-text-white);
+  color: var(--color-text-dark);
+}
+
+.btn-cta-secondary:hover {
+  background-color: rgb(243 244 246);
+}
+
+.btn-cta-outline {
+  background-color: transparent;
+  color: var(--color-text-white);
+  border: 1px solid var(--color-text-white);
+}
+
+.btn-cta-outline:hover {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+/* Input Submit Button - Small circular button inside inputs */
+.btn-input-submit-valid {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background-color: var(--color-text-white);
+  cursor: pointer;
+}
+
+.btn-input-submit-valid:hover {
+  background-color: rgb(229 231 235);
+}
+
+.btn-input-submit-valid:active {
+  transform: scale(0.95);
+}
+
+.btn-input-submit-invalid {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background-color: rgb(255 255 255 / 0.2);
+  cursor: not-allowed;
+}

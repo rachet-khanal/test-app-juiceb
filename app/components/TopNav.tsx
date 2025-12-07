@@ -68,7 +68,7 @@ export default function TopNav() {
   }, [showBackButton])
 
   return (
-    <div className="flex flex-row justify-between items-center w-full px-px-20 py-5">
+    <div className="nav-bar">
       {/* Left side - Back button (always rendered, animated in/out) */}
       <div
         ref={backButtonRef}
@@ -95,7 +95,7 @@ export default function TopNav() {
 
       {/* Center - Animated Logo */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 cursor-pointer"
+        className="absolute-centered-x cursor-pointer"
         onMouseEnter={handleLogoInteraction}
         onClick={handleLogoInteraction}
       >

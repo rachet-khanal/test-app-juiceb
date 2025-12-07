@@ -66,7 +66,7 @@ export default function ResultsPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-start px-px-20 -mt-1 text-[19px] font-bagoss text-center text-[#fafafa]">
+    <div className="container-page-results">
       <p className="leading-snug mb-6">
         Thanks, {formData.name}! Now it&apos;s time to get a reality check.
       </p>
