@@ -87,7 +87,7 @@ export default function LottieAnimation({
       renderer: "svg",
       loop: false,
       autoplay: false,
-      path: "/JB2G_JAI.json",
+      path: "JB2G_JAI.json",
       rendererSettings: {
         // @ts-expect-error - id is supported but not in type definitions
         id: "lottie-blob",
@@ -183,7 +183,7 @@ export default function LottieAnimation({
             patternTransform="scale(-1.05, -1.05) translate(-1, 1)"
           >
             <image
-              href="/images/blob-bg.png"
+              href="images/blob-bg.png"
               x="0"
               y="0"
               width="1"

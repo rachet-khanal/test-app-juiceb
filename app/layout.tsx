@@ -14,7 +14,7 @@ import { LayoutContent } from "./LayoutContent"
 export const metadata: Metadata = {
   title: "Juicebox",
   description: "Juicebox App",
-  manifest: "/manifest.json",
+  manifest: "manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
