@@ -3,6 +3,7 @@
 import { LoaderProvider, useLoader } from "./contexts/LoaderContext"
 import { ReactNode, useState } from "react"
 
+import AnimatedBackground from "./components/AnimatedBackground"
 import { BackButtonProvider } from "./contexts/BackButtonContext"
 import CTAButton from "./components/CTAButton"
 import { CTAButtonProvider } from "./contexts/CTAButtonContext"
@@ -30,13 +31,10 @@ function LayoutInner({ children }: { children: ReactNode }) {
         <FormDataProvider>
           <BackButtonProvider>
             <CTAButtonProvider>
-              <div
-                className="text-white relative flex flex-col h-full"
-                style={{
-                  background:
-                    "radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0C0D10 100%)",
-                }}
-              >
+              {/* Animated Background - handles all gradient transitions */}
+              <AnimatedBackground />
+
+              <div className="text-white relative flex flex-col h-full">
                 <SmoothScroll>
                   {/* Loader Overlay - shows ONCE on initial mount only */}
                   {showLoader && (

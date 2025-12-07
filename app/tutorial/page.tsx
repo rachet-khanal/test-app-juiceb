@@ -112,8 +112,16 @@ export default function TutorialPage() {
 
   // Handle slide change
   const handleSlideChange = (swiper: any) => {
-    setCurrentSlide(swiper.activeIndex)
-    animateText(swiper.activeIndex)
+    const slideIndex = swiper.activeIndex
+    setCurrentSlide(slideIndex)
+    animateText(slideIndex)
+
+    // Dispatch custom event for background animation
+    window.dispatchEvent(
+      new CustomEvent("tutorial-slide-change", {
+        detail: { slide: slideIndex },
+      })
+    )
   }
 
   // Set custom back button handler for TopNav
