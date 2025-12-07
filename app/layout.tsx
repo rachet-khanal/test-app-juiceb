@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "Juicebox",
   },
   icons: {
-    apple: "/images/logo.svg",
+    apple: "images/logo.svg",
   },
 }
 

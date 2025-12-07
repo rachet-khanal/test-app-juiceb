@@ -21,22 +21,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         <div
-          className={`${error ? "input-container-error" : "input-container-default"} ${className}`}
+          className={`${
+            error ? "input-container-error" : "input-container-default"
+          } ${className}`}
         >
-          <input
-            ref={ref}
-            className="input-field"
-            {...props}
-          />
+          <input ref={ref} className="input-field" {...props} />
           <button
             type="button"
             onClick={handleButtonClick}
             disabled={!isValid}
-            className={isValid ? "btn-input-submit-valid" : "btn-input-submit-invalid"}
+            className={
+              isValid ? "btn-input-submit-valid" : "btn-input-submit-invalid"
+            }
             aria-label="Submit"
           >
             <Image
-              src="/icons/arrow-up.svg"
+              src="icons/arrow-up.svg"
               alt="Submit"
               width={20}
               height={20}
@@ -49,9 +49,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             />
           </button>
         </div>
-        {error && (
-          <p className="text-error">{error}</p>
-        )}
+        {error && <p className="text-error">{error}</p>}
       </div>
     )
   }
