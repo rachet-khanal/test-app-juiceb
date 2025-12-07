@@ -14,7 +14,6 @@ import { useBackButton } from "../contexts/BackButtonContext"
 import { useCTAButton } from "../contexts/CTAButtonContext"
 import { useLoader } from "../contexts/LoaderContext"
 import { useNavigation } from "../contexts/NavigationContext"
-import { useRouter } from "next/navigation"
 
 const tutorialSlides = [
   {
@@ -29,7 +28,6 @@ const tutorialSlides = [
 ]
 
 export default function TutorialPage() {
-  const router = useRouter()
   const { loaderFinished } = useLoader()
   const { setCTAConfig } = useCTAButton()
   const { setCustomBackHandler } = useBackButton()
@@ -99,9 +97,8 @@ export default function TutorialPage() {
       if (swiperRef.current && currentSlide < tutorialSlides.length - 1) {
         swiperRef.current.slideNext()
       } else {
-        // Last slide - navigate to survey (placeholder for now, will log)
-        console.log("Get started - navigate to survey")
-        // TODO: router.push('/survey') when survey page is ready
+        // Last slide - navigate to survey
+        navigateTo("/survey")
       }
     }
 
@@ -111,7 +108,7 @@ export default function TutorialPage() {
       disabled: false,
       onClick: handleContinue,
     })
-  }, [currentSlide, isLastSlide, setCTAConfig])
+  }, [currentSlide, isLastSlide, navigateTo, setCTAConfig])
 
   // Handle slide change
   const handleSlideChange = (swiper: any) => {

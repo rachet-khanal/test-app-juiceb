@@ -90,4 +90,14 @@ export const LOTTIE_PRESETS = {
     height: 155,
     padding: 48,
   },
+  survey: {
+    width: 29,
+    height: 30.79,
+    padding: 24,
+  },
+  result: {
+    width: 29,
+    height: 30.79,
+    padding: 24,
+  },
 } as const
