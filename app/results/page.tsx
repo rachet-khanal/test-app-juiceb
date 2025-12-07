@@ -18,7 +18,8 @@ export default function ResultsPage() {
 
   // Wait for hydration from localStorage
   useEffect(() => {
-    setIsHydrated(true)
+    // Use a microtask to avoid synchronous setState in effect
+    Promise.resolve().then(() => setIsHydrated(true))
   }, [])
 
   // Redirect to survey if user hasn't completed it (after hydration)
@@ -49,7 +50,7 @@ export default function ResultsPage() {
         setLottieSize(LOTTIE_PRESETS.home.width, LOTTIE_PRESETS.home.height)
       },
     })
-  }, [navigateTo, setCTAConfig])
+  }, [navigateTo, setCTAConfig, setLottieSize])
 
   // Configure back button
   useEffect(() => {

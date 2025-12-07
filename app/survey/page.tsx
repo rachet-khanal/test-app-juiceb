@@ -8,6 +8,7 @@ import Input from "@/app/components/Input"
 import { ZodError } from "zod"
 import gsap from "gsap"
 import { useBackButton } from "@/app/contexts/BackButtonContext"
+import { useBackground } from "@/app/contexts/BackgroundContext"
 import { useCTAButton } from "@/app/contexts/CTAButtonContext"
 import { useFormData } from "@/app/contexts/FormDataContext"
 import { useNavigation } from "@/app/contexts/NavigationContext"
@@ -18,6 +19,7 @@ export default function SurveyPage() {
   const { setCustomBackHandler } = useBackButton()
   const { formData, dispatch } = useFormData()
   const { setLottieSize } = useLottie()
+  const { setGradient } = useBackground()
 
   const [step, setStep] = useState<1 | 2>(1)
   const [name, setName] = useState(formData.name)
@@ -28,14 +30,15 @@ export default function SurveyPage() {
   const textRef = useRef<HTMLParagraphElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Set Lottie size for this page
+  // Set Lottie size and gradient for this page
   useEffect(() => {
     setLottieSize(
       LOTTIE_PRESETS.survey.width,
       LOTTIE_PRESETS.survey.width,
       LOTTIE_PRESETS.survey.padding
     )
-  }, [setLottieSize])
+    setGradient("default")
+  }, [setLottieSize, setGradient])
 
   // Animate text on mount and step change
   useEffect(() => {
@@ -126,6 +129,13 @@ export default function SurveyPage() {
   useEffect(() => {
     const handleBack = () => {
       if (step === 1) {
+        // Set Lottie size and gradient back to tutorial preset
+        setLottieSize(
+          LOTTIE_PRESETS.tutorial.width,
+          LOTTIE_PRESETS.tutorial.height,
+          LOTTIE_PRESETS.tutorial.padding
+        )
+        setGradient("default") // Tutorial slide 2 uses default gradient
         navigateTo("/tutorial")
       } else {
         setStep(1)
@@ -134,7 +144,7 @@ export default function SurveyPage() {
     }
     setCustomBackHandler(() => handleBack)
     return () => setCustomBackHandler(null)
-  }, [step, navigateTo, setCustomBackHandler])
+  }, [step, navigateTo, setCustomBackHandler, setLottieSize, setGradient])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -175,10 +185,7 @@ export default function SurveyPage() {
 
   return (
     <div className="container-page-survey">
-      <p
-        ref={textRef}
-        className="body-medium pb-45"
-      >
+      <p ref={textRef} className="body-medium pb-45">
         {step === 1
           ? "Let's start with the basics. Type in your first name."
           : "How should we contact you? Type in your email address."}

@@ -103,6 +103,8 @@ export default function PageTransition({ children }: Props) {
     })
 
     return () => ctx.revert()
+    // completePendingNavigation and pendingRoute are intentionally excluded to avoid infinite loops
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, setTransitioning])
 
   /* ---------------------------------------------------- */

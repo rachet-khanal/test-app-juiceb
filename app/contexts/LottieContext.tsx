@@ -32,7 +32,7 @@ interface LottieContextType {
 }
 
 // Calculate scale based on target dimensions
-function calculateScale(targetWidth: number, _targetHeight: number): number {
+function calculateScale(targetWidth: number): number {
   // Use width as the primary dimension for scaling
   return targetWidth / BASE_LOTTIE_SIZE.width
 }
@@ -52,7 +52,7 @@ export function LottieProvider({ children }: { children: ReactNode }) {
 
   const setLottieSize = useCallback(
     (targetWidth: number, targetHeight: number, padding = 28) => {
-      const scale = calculateScale(targetWidth, targetHeight)
+      const scale = calculateScale(targetWidth)
       setLottieConfigState({
         targetWidth,
         targetHeight,

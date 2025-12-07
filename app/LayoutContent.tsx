@@ -5,6 +5,7 @@ import { ReactNode, useState } from "react"
 
 import AnimatedBackground from "./components/AnimatedBackground"
 import { BackButtonProvider } from "./contexts/BackButtonContext"
+import { BackgroundProvider } from "./contexts/BackgroundContext"
 import CTAButton from "./components/CTAButton"
 import { CTAButtonProvider } from "./contexts/CTAButtonContext"
 import { FormDataProvider } from "./contexts/FormDataContext"
@@ -27,12 +28,13 @@ function LayoutInner({ children }: { children: ReactNode }) {
 
   return (
     <NavigationProvider>
-      <LottieProvider>
-        <FormDataProvider>
-          <BackButtonProvider>
-            <CTAButtonProvider>
-              {/* Animated Background - handles all gradient transitions */}
-              <AnimatedBackground />
+      <BackgroundProvider>
+        <LottieProvider>
+          <FormDataProvider>
+            <BackButtonProvider>
+              <CTAButtonProvider>
+                {/* Animated Background - handles all gradient transitions */}
+                <AnimatedBackground />
 
               <div className="text-white relative flex flex-col h-full">
                 <SmoothScroll>
@@ -70,6 +72,7 @@ function LayoutInner({ children }: { children: ReactNode }) {
           </BackButtonProvider>
         </FormDataProvider>
       </LottieProvider>
+      </BackgroundProvider>
     </NavigationProvider>
   )
 }

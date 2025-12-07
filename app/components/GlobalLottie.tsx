@@ -40,7 +40,13 @@ export default function GlobalLottie() {
     })
 
     previousScale.current = lottieConfig.scale
-  }, [loaderFinished, lottieConfig.scale, baseWidth, baseHeight])
+  }, [
+    loaderFinished,
+    lottieConfig.scale,
+    lottieConfig.padding,
+    baseWidth,
+    baseHeight,
+  ])
 
   /* ---------------------------------------------- */
   /* SCALE ANIMATION – RUNS ALONGSIDE PAGE TRANS    */

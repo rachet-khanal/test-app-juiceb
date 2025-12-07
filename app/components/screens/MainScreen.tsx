@@ -2,6 +2,7 @@
 
 import { LOTTIE_PRESETS, useLottie } from "../../contexts/LottieContext"
 import { useNavigation } from "../../contexts/NavigationContext"
+import { useBackground } from "../../contexts/BackgroundContext"
 import { useEffect, useRef } from "react"
 
 export default function MainScreen() {
@@ -10,14 +11,16 @@ export default function MainScreen() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { setLottieSize } = useLottie()
   const { isTransitioning } = useNavigation()
+  const { setGradient } = useBackground()
 
-  // Set Lottie to home configuration when this screen mounts
+  // Set Lottie and gradient to home configuration when this screen mounts
   // Wait for transition to complete before changing size
   useEffect(() => {
     if (isTransitioning) return // Wait for transition to finish
 
     setLottieSize(LOTTIE_PRESETS.home.width, LOTTIE_PRESETS.home.height)
-  }, [setLottieSize, isTransitioning])
+    setGradient("home")
+  }, [setLottieSize, isTransitioning, setGradient])
 
   return (
     <div className="w-full" ref={containerRef}>

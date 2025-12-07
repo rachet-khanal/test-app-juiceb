@@ -1,63 +1,20 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { usePathname, useSearchParams } from "next/navigation"
+import { GRADIENTS, useBackground } from "../contexts/BackgroundContext"
+import { useEffect, useRef } from "react"
 
 import { gsap } from "gsap"
 
-// Gradient configurations based on route
-const GRADIENTS = {
-  home: "radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0C0D10 100%)",
-  "tutorial-first":
-    "radial-gradient(51.9% 51.9% at 50% 48.1%, #222737 0%, #0C0D10 100%)",
-  default:
-    "radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0C0D10 100%)",
-} as const
-
-// Map routes to gradient types
-const getGradientForRoute = (pathname: string): keyof typeof GRADIENTS => {
-  if (pathname === "/") return "home"
-  // Tutorial will use custom event to determine gradient
-  if (pathname === "/tutorial") return "tutorial-first"
-  return "default"
-}
-
 export default function AnimatedBackground() {
-  const pathname = usePathname()
+  const { currentGradient } = useBackground()
   const canvasRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const currentGradientRef = useRef<string>(GRADIENTS.home)
-  const [tutorialSlide, setTutorialSlide] = useState(0)
-
-  // Listen for tutorial slide changes
-  useEffect(() => {
-    const handleSlideChange = (event: CustomEvent) => {
-      setTutorialSlide(event.detail.slide)
-    }
-
-    window.addEventListener(
-      "tutorial-slide-change" as any,
-      handleSlideChange as any
-    )
-
-    return () => {
-      window.removeEventListener(
-        "tutorial-slide-change" as any,
-        handleSlideChange as any
-      )
-    }
-  }, [])
 
   useEffect(() => {
     if (!canvasRef.current || !overlayRef.current) return
 
-    // Determine target gradient based on route and tutorial slide
-    const targetGradient =
-      pathname === "/tutorial"
-        ? tutorialSlide === 0
-          ? GRADIENTS["tutorial-first"]
-          : GRADIENTS.default
-        : GRADIENTS[getGradientForRoute(pathname)]
+    const targetGradient = GRADIENTS[currentGradient]
 
     // Skip animation if gradient hasn't changed
     if (currentGradientRef.current === targetGradient) return
@@ -87,7 +44,7 @@ export default function AnimatedBackground() {
         },
       }
     )
-  }, [pathname, tutorialSlide])
+  }, [currentGradient])
 
   return (
     <>

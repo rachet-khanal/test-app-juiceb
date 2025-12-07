@@ -5,12 +5,14 @@ import "swiper/css/pagination"
 
 import { LOTTIE_PRESETS, useLottie } from "../contexts/LottieContext"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 import DotIndicator from "../components/DotIndicator"
 import { Pagination } from "swiper/modules"
+import type { Swiper as SwiperType } from "swiper"
 import { gsap } from "gsap"
 import { useBackButton } from "../contexts/BackButtonContext"
+import { useBackground } from "../contexts/BackgroundContext"
 import { useCTAButton } from "../contexts/CTAButtonContext"
 import { useLoader } from "../contexts/LoaderContext"
 import { useNavigation } from "../contexts/NavigationContext"
@@ -33,24 +35,17 @@ export default function TutorialPage() {
   const { setCustomBackHandler } = useBackButton()
   const { navigateTo } = useNavigation()
   const { setLottieSize } = useLottie()
+  const { setGradient } = useBackground()
+
   const [currentSlide, setCurrentSlide] = useState(0)
-  const swiperRef = useRef<any>(null)
+  const swiperRef = useRef<SwiperType | null>(null)
   const textRefs = useRef<(HTMLParagraphElement | null)[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
 
   const isLastSlide = currentSlide === tutorialSlides.length - 1
 
-  // Configure Lottie for tutorial page (smaller size)
-  useEffect(() => {
-    setLottieSize(
-      LOTTIE_PRESETS.tutorial.width,
-      LOTTIE_PRESETS.tutorial.height,
-      LOTTIE_PRESETS.tutorial.padding
-    )
-  }, [setLottieSize])
-
   // Animate text character by character
-  const animateText = (index: number) => {
+  const animateText = useCallback((index: number) => {
     const textEl = textRefs.current[index]
     if (!textEl) return
 
@@ -75,7 +70,21 @@ export default function TutorialPage() {
       stagger: 0.02,
       ease: "none",
     })
-  }
+  }, [])
+
+  // Configure Lottie for tutorial page (smaller size)
+  useEffect(() => {
+    setLottieSize(
+      LOTTIE_PRESETS.tutorial.width,
+      LOTTIE_PRESETS.tutorial.height,
+      LOTTIE_PRESETS.tutorial.padding
+    )
+  }, [setLottieSize])
+
+  // Set gradient on mount - tutorial always starts with tutorial-first gradient
+  useEffect(() => {
+    setGradient("tutorial-first")
+  }, [setGradient])
 
   // Entry animation when loader finishes
   useEffect(() => {
@@ -89,7 +98,7 @@ export default function TutorialPage() {
 
     // Animate first slide text
     setTimeout(() => animateText(0), 500)
-  }, [loaderFinished])
+  }, [loaderFinished, animateText])
 
   // Configure CTA button based on current slide
   useEffect(() => {
@@ -111,17 +120,13 @@ export default function TutorialPage() {
   }, [currentSlide, isLastSlide, navigateTo, setCTAConfig])
 
   // Handle slide change
-  const handleSlideChange = (swiper: any) => {
+  const handleSlideChange = (swiper: SwiperType) => {
     const slideIndex = swiper.activeIndex
     setCurrentSlide(slideIndex)
     animateText(slideIndex)
 
-    // Dispatch custom event for background animation
-    window.dispatchEvent(
-      new CustomEvent("tutorial-slide-change", {
-        detail: { slide: slideIndex },
-      })
-    )
+    // Update background gradient: slide 0 uses tutorial-first, slides 1-2 use default
+    setGradient(slideIndex === 0 ? "tutorial-first" : "default")
   }
 
   // Set custom back button handler for TopNav
@@ -129,6 +134,7 @@ export default function TutorialPage() {
     const handleBack = () => {
       if (currentSlide === 0) {
         // First slide - navigate back to home
+        setGradient("home")
         navigateTo("/")
 
         // handle lottie animation immediately
@@ -145,7 +151,13 @@ export default function TutorialPage() {
     return () => {
       setCustomBackHandler(null)
     }
-  }, [currentSlide, navigateTo, setCustomBackHandler, setLottieSize])
+  }, [
+    currentSlide,
+    navigateTo,
+    setCustomBackHandler,
+    setLottieSize,
+    setGradient,
+  ])
 
   return (
     <div ref={containerRef} style={{ opacity: 0 }} className="flex">
