@@ -149,6 +149,7 @@ The application uses React Context for global state management:
 ### Form Validation
 
 All form inputs use Zod schemas for type-safe validation:
+
 - Email validation with proper format checking
 - Name validation with length requirements
 - Real-time error feedback
@@ -173,6 +174,21 @@ All form inputs use Zod schemas for type-safe validation:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## GitHub Pages Deployment
+
+This project is configured to support deployment under a GitHub Pages repository subpath.
+
+Before building for GitHub Pages, set the following environment variable so asset paths are generated correctly:
+
+```bash
+NEXT_PUBLIC_GITHUB_PAGES=true
+```
+
+Then build and deploy as usual.
+
+You can view live demo here:
+<https://rachet-khanal.github.io/test-app-juiceb/>
 
 ## License
 
