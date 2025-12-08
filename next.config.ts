@@ -1,15 +1,9 @@
 import type { NextConfig } from "next"
 
-// Get repo name from environment variable
-const repoName = process.env.NEXT_PUBLIC_GITHUB_REPO_NAME
-
-// Determine if we're building for GitHub Pages based on whether repo name exists
-const isGitHubPages = !!repoName
-
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: isGitHubPages ? `/${repoName}` : "",
-  assetPrefix: isGitHubPages ? `/${repoName}` : "",
+  // basePath and assetPrefix are automatically injected by actions/configure-pages in CI
+  // For local development with GitHub Pages basePath, set NEXT_PUBLIC_GITHUB_REPO_NAME in .env.production
   images: {
     unoptimized: true,
   },
