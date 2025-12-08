@@ -36,18 +36,18 @@ function LayoutInner({ children }: { children: ReactNode }) {
                 {/* Animated Background - handles all gradient transitions */}
                 <AnimatedBackground />
 
-              <div className="text-white relative flex flex-col h-full">
-                <SmoothScroll>
-                  {/* Loader Overlay - shows ONCE on initial mount only */}
-                  {showLoader && (
-                    <div className="fixed inset-0 z-50">
-                      <LoaderScreen
-                        onComplete={handleLoaderComplete}
-                        duration={1.75}
-                      />
-                    </div>
-                  )}
+              <SmoothScroll>
+                {/* Loader Overlay - shows ONCE on initial mount only */}
+                {showLoader && (
+                  <div className="fixed inset-0 z-50">
+                    <LoaderScreen
+                      onComplete={handleLoaderComplete}
+                      duration={1.75}
+                    />
+                  </div>
+                )}
 
+                <div className="text-white relative flex flex-col h-full">
                   {/* Header - always visible */}
                   <div
                     className="relative shrink-0"
@@ -57,7 +57,7 @@ function LayoutInner({ children }: { children: ReactNode }) {
                   </div>
 
                   {/* Page Content with transitions - grows to fill space */}
-                  <div className="relative flex-1 overflow-y-auto">
+                  <div className="relative flex-1 overflow-y-auto min-h-0">
                     <GlobalLottie />
                     <PageTransition>{children}</PageTransition>
                   </div>
@@ -66,8 +66,8 @@ function LayoutInner({ children }: { children: ReactNode }) {
                   <div className="shrink-0" style={{ paddingBottom: "24px" }}>
                     <CTAButton />
                   </div>
-                </SmoothScroll>
-              </div>
+                </div>
+              </SmoothScroll>
             </CTAButtonProvider>
           </BackButtonProvider>
         </FormDataProvider>

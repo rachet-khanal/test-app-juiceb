@@ -23,7 +23,7 @@ export default function MainScreen() {
   }, [setLottieSize, isTransitioning, setGradient])
 
   return (
-    <div className="w-full" ref={containerRef}>
+    <div className="w-full max-w-[430px] mx-auto" ref={containerRef}>
       {/* Spacer and Text Overlays Container */}
       <div className="absolute-top-full">
         <div className="py-px-28">

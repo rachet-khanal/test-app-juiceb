@@ -8,10 +8,11 @@
 .absolute-top-full {
   position: absolute;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: var(--spacing-px-390);
-  margin-left: auto;
-  margin-right: auto;
+  z-index: 10;
 }
 
 /* Text overlay positions - specific to MainScreen */
@@ -41,4 +42,3 @@
   top: var(--spacing-px-274);
   max-width: var(--spacing-px-226);
 }
-

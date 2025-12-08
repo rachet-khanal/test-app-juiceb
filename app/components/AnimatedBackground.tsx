@@ -51,7 +51,7 @@ export default function AnimatedBackground() {
       {/* Base canvas - 527px height minus status bar (46px) = 481px */}
       <div
         ref={canvasRef}
-        className="fixed inset-0 z-0 top-0"
+        className="absolute left-1/2 -translate-x-1/2 z-0 top-0 w-full max-w-[430px]"
         style={{
           background: GRADIENTS.home,
           height: "481px",
@@ -60,7 +60,7 @@ export default function AnimatedBackground() {
       {/* Transition overlay */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-0 pointer-events-none top-0"
+        className="absolute left-1/2 -translate-x-1/2 z-0 pointer-events-none top-0 w-full max-w-[430px]"
         style={{
           opacity: 0,
           height: "481px",

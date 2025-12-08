@@ -72,8 +72,7 @@ body {
   margin: 0;
   padding: 0;
   background: var(--color-bg-dark);
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
 }
 
 .blob-mask path {
