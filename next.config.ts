@@ -1,9 +1,10 @@
 import type { NextConfig } from "next"
 
-const repoName = "test-app-juiceb"
+// Get repo name from environment variable
+const repoName = process.env.NEXT_PUBLIC_GITHUB_REPO_NAME
 
-// Set this only when building for GitHub Pages
-const isGitHubPages = process.env.NEXT_PUBLIC_GITHUB_PAGES === "true"
+// Determine if we're building for GitHub Pages based on whether repo name exists
+const isGitHubPages = !!repoName
 
 const nextConfig: NextConfig = {
   output: "export",

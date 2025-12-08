@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation"
 import gsap from "gsap"
 import { useLoader } from "../contexts/LoaderContext"
 import { useNavigation } from "../contexts/NavigationContext"
+import { normalizeRoute } from "../lib/navigation"
 
 interface Props {
   children: ReactNode
@@ -67,7 +68,8 @@ export default function PageTransition({ children }: Props) {
         ease: "power2.inOut",
         onComplete: () => {
           // Navigate after exit animation
-          router.push(pendingRoute)
+          // Normalize the route to handle basePath for GitHub Pages
+          router.push(normalizeRoute(pendingRoute))
         },
       })
     })

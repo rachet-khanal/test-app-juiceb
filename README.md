@@ -89,7 +89,7 @@ yarn start
 
 ## Project Structure
 
-```
+```text
 juicebox/
 ├── app/
 │   ├── components/          # Reusable UI components
@@ -179,15 +179,35 @@ All form inputs use Zod schemas for type-safe validation:
 
 This project is configured to support deployment under a GitHub Pages repository subpath.
 
-Before building for GitHub Pages, set the following environment variable so asset paths are generated correctly:
+### Environment Configuration
+
+The project automatically detects GitHub Pages mode based on the repository name environment variable.
+
+**For Local Development:**
+
+Create a `.env.production` file (or leave it empty):
 
 ```bash
-NEXT_PUBLIC_GITHUB_PAGES=true
+NEXT_PUBLIC_GITHUB_REPO_NAME=
 ```
+
+**For GitHub Pages Deployment:**
+
+Set the repository name in your `.env.production` file:
+
+```bash
+NEXT_PUBLIC_GITHUB_REPO_NAME=test-app-juiceb
+```
+
+The application will automatically:
+
+- Configure the correct `basePath` and `assetPrefix` for GitHub Pages
+- Handle navigation routing with proper path prefixes
+- Ensure all routes (including "/") work correctly without 404 errors
 
 Then build and deploy as usual.
 
-You can view live demo here:
+You can view the live demo here:
 <https://rachet-khanal.github.io/test-app-juiceb/>
 
 ## License
